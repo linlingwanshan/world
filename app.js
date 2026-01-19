@@ -1,3 +1,6 @@
+// Configuration
+const MAX_WEBSITES_PER_INDUSTRY = 10;
+
 // Industry data structure
 const industries = [
     {
@@ -120,7 +123,7 @@ function renderIndustries() {
         list.className = 'website-list';
 
         // Add each website to the list (limit to top 10)
-        industry.websites.slice(0, 10).forEach((website, index) => {
+        industry.websites.slice(0, MAX_WEBSITES_PER_INDUSTRY).forEach((website, index) => {
             const listItem = document.createElement('li');
             listItem.className = 'website-item';
 

@@ -548,7 +548,7 @@ All rights reserved © 2026 Global Industry Top 10 Portal
 - ✨ 支持 6 个行业分类 / Support for 6 industry categories
 - ✨ 每个行业 10 个精选网站 / 10 curated websites per industry
 - ✨ 响应式设计，支持移动端 / Responsive design with mobile support
-- ✨ 基于 Next.js 15 和 React 19 构建 / Built with Next.js 15 and React 19
+- ✨ 基于 Next.js 16 和 React 19 构建 / Built with Next.js 16 and React 19
 
 ---
 

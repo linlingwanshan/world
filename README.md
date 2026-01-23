@@ -336,8 +336,8 @@ Reference implementation of Next.js 15 best practices, App Router patterns, and 
 
 ### Why These Technologies?
 
-- **Next.js 15**: Latest features including App Router, React Server Components, and improved performance
-- **React 19**: Modern React with enhanced features and better developer experience
+- **Next.js 15**: Modern features including App Router, React Server Components, and optimized performance
+- **React 19**: Enhanced features and improved developer experience
 - **TypeScript**: Catch errors early and improve code maintainability
 - **Tailwind CSS v4**: Rapid development with consistent styling and built-in responsiveness
 

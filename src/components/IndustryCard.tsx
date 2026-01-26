@@ -33,7 +33,7 @@ export default function IndustryCard({ industry }: IndustryCardProps) {
         href={`/industry/${industry.id}`}
         className="inline-block bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition-colors text-sm font-medium"
       >
-        View All ({industry.websites.length})
+        查看全部 ({industry.websites.length})
       </Link>
     </div>
   );

@@ -8,11 +8,10 @@ export default function AllIndustriesPage() {
         {/* Page Header */}
         <div className="text-center mb-12 bg-white rounded-lg shadow-lg p-8">
           <h1 className="text-4xl sm:text-5xl font-bold text-purple-600 mb-4">
-            All Industries
+            所有行业
           </h1>
           <p className="text-gray-600 max-w-3xl mx-auto">
-            Browse through all available industry categories and discover the top 10 
-            websites in each sector.
+            浏览所有可用的行业类别，发现每个行业的前10名网站。
           </p>
         </div>
 

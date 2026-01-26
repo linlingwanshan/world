@@ -24,7 +24,7 @@ export default function Navigation() {
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
               <h1 className="text-xl font-bold text-purple-600">
-                Industry Portal
+                行业门户
               </h1>
             </Link>
           </div>
@@ -39,7 +39,7 @@ export default function Navigation() {
                   : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600'
               }`}
             >
-              Home
+              首页
             </Link>
             {industries.slice(0, 3).map((industry) => (
               <Link
@@ -62,7 +62,7 @@ export default function Navigation() {
                   : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600'
               }`}
             >
-              All Industries
+              所有行业
             </Link>
           </div>
 
@@ -74,7 +74,7 @@ export default function Navigation() {
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-purple-600 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500"
               aria-expanded="false"
             >
-              <span className="sr-only">Open main menu</span>
+              <span className="sr-only">打开主菜单</span>
               {!isMenuOpen ? (
                 <svg
                   className="block h-6 w-6"
@@ -126,7 +126,7 @@ export default function Navigation() {
                   : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600'
               }`}
             >
-              Home
+              首页
             </Link>
             {industries.slice(0, 3).map((industry) => (
               <Link
@@ -151,7 +151,7 @@ export default function Navigation() {
                   : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600'
               }`}
             >
-              All Industries
+              所有行业
             </Link>
           </div>
         </div>

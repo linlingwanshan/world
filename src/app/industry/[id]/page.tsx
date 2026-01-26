@@ -42,7 +42,7 @@ export default async function IndustryPage({ params }: PageProps) {
               d="M15 19l-7-7 7-7"
             />
           </svg>
-          Back to Home
+          返回首页
         </Link>
 
         {/* Industry Header */}
@@ -56,7 +56,7 @@ export default async function IndustryPage({ params }: PageProps) {
         {/* Top 10 List */}
         <div className="bg-white rounded-lg shadow-lg p-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">
-            Top 10 {industry.name} Websites
+            {industry.name}前10名网站
           </h2>
           <div className="space-y-4">
             {industry.websites.map((website, index) => (
@@ -91,7 +91,7 @@ export default async function IndustryPage({ params }: PageProps) {
                     rel="noopener noreferrer"
                     className="text-purple-600 hover:text-purple-700 text-sm inline-flex items-center mt-1"
                   >
-                    Visit Website
+                    访问网站
                     <svg
                       className="w-4 h-4 ml-1"
                       fill="none"

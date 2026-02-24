@@ -8,10 +8,7 @@ export default function Home() {
         {/* Hero Section */}
         <div className="text-center mb-12 relative overflow-hidden bg-gradient-to-br from-white to-purple-50 rounded-2xl shadow-xl p-10">
           {/* Decorative dot grid */}
-          <div
-            className="absolute inset-0 opacity-[0.04]"
-            style={{ backgroundImage: 'radial-gradient(circle, #7c3aed 1px, transparent 1px)', backgroundSize: '24px 24px' }}
-          />
+          <div className="absolute inset-0 opacity-[0.04] dot-grid" />
           {/* Decorative blobs */}
           <div className="absolute top-0 right-0 w-48 h-48 bg-purple-300 rounded-full -translate-y-1/2 translate-x-1/2 opacity-20 blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-300 rounded-full translate-y-1/2 -translate-x-1/2 opacity-20 blur-3xl pointer-events-none" />
@@ -20,7 +17,7 @@ export default function Home() {
             <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 text-sm font-medium px-4 py-1.5 rounded-full mb-5">
               🌍 全球行业排名门户
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={{ background: 'linear-gradient(135deg, #7c3aed, #9333ea, #2563eb)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+            <h1 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-br from-purple-600 via-purple-500 to-blue-600 bg-clip-text text-transparent">
               世界各行业排名前10门户
             </h1>
             <p className="text-xl text-gray-700 mb-2 font-medium">

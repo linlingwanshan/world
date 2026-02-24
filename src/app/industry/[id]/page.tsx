@@ -13,6 +13,12 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
+const podiumConfig = [
+  { medal: '🥇', label: '冠军', border: 'border-yellow-400/60', bg: 'bg-gradient-to-r from-yellow-950/60 to-amber-900/40', badgeBg: 'bg-gradient-to-br from-yellow-400 to-amber-500', shadow: 'shadow-yellow-500/20' },
+  { medal: '🥈', label: '亚军', border: 'border-slate-400/60', bg: 'bg-gradient-to-r from-slate-800/80 to-slate-700/40', badgeBg: 'bg-gradient-to-br from-slate-300 to-slate-500', shadow: 'shadow-slate-400/20' },
+  { medal: '🥉', label: '季军', border: 'border-orange-700/60', bg: 'bg-gradient-to-r from-orange-950/60 to-orange-900/40', badgeBg: 'bg-gradient-to-br from-orange-400 to-orange-600', shadow: 'shadow-orange-500/20' },
+];
+
 export default async function IndustryPage({ params }: PageProps) {
   const { id } = await params;
   const industry = getIndustryById(id);
@@ -27,88 +33,120 @@ export default async function IndustryPage({ params }: PageProps) {
         {/* Back Button */}
         <Link
           href="/"
-          className="inline-flex items-center text-white hover:text-purple-100 mb-6 transition-colors"
+          className="inline-flex items-center gap-2 text-slate-300 hover:text-white mb-6 transition-all duration-200 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 px-4 py-2 rounded-xl group"
         >
           <svg
-            className="w-5 h-5 mr-2"
+            className="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
           返回首页
         </Link>
 
-        {/* Industry Header */}
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-          <h1 className="text-4xl font-bold text-purple-600 mb-4">
-            {industry.name}
-          </h1>
-          <p className="text-gray-700 text-lg">{industry.description}</p>
+        {/* Industry Header Banner */}
+        <div className={`relative overflow-hidden rounded-2xl shadow-2xl mb-8 bg-gradient-to-br ${industry.gradient} p-px`}>
+          <div className="relative rounded-[14px] bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-sm p-8">
+            {/* Decorative glow */}
+            <div className={`absolute inset-0 bg-gradient-to-br ${industry.gradient} opacity-10 rounded-[14px]`} />
+            <div className="relative z-10 flex items-center gap-6">
+              <span className="text-6xl animate-float">{industry.icon}</span>
+              <div>
+                <h1 className={`text-4xl font-bold mb-2 bg-gradient-to-r ${industry.gradient} bg-clip-text text-transparent`}>
+                  {industry.name}
+                </h1>
+                <p className="text-slate-300 text-lg">{industry.description}</p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Top 10 List */}
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">
-            {industry.name}前10名网站
+        {/* Top 3 Podium */}
+        <div className="mb-6">
+          <h2 className="text-xl font-bold text-slate-300 mb-4 flex items-center gap-2">
+            <span>🏆</span> 前三名
           </h2>
-          <div className="space-y-4">
-            {industry.websites.map((website, index) => (
-              <div
-                key={index}
-                className="flex items-start p-4 bg-gray-50 rounded-lg hover:bg-purple-50 transition-colors"
-              >
-                <div className="flex-shrink-0">
-                  <span className="inline-flex items-center justify-center w-10 h-10 bg-purple-600 text-white rounded-full text-lg font-bold">
-                    {index + 1}
+          <div className="space-y-3">
+            {industry.websites.slice(0, 3).map((website, index) => {
+              const cfg = podiumConfig[index];
+              return (
+                <div
+                  key={index}
+                  className={`flex items-center gap-4 p-5 rounded-xl border ${cfg.border} ${cfg.bg} shadow-lg ${cfg.shadow} transition-all duration-300 hover:translate-x-1 hover:shadow-xl group`}
+                >
+                  <span className={`inline-flex items-center justify-center w-12 h-12 ${cfg.badgeBg} text-white rounded-full text-xl font-bold flex-shrink-0 shadow-md`}>
+                    {cfg.medal}
                   </span>
-                </div>
-                <div className="ml-4 flex-1">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                    <a
-                      href={website.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-purple-600 transition-colors"
-                    >
-                      {website.name}
-                    </a>
-                  </h3>
-                  {website.description && (
-                    <p className="text-gray-600 text-sm">
-                      {website.description}
-                    </p>
-                  )}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-base font-semibold text-white mb-0.5">
+                      <a href={website.url} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                        {website.name}
+                      </a>
+                    </h3>
+                    {website.description && (
+                      <p className="text-slate-400 text-sm truncate">{website.description}</p>
+                    )}
+                  </div>
                   <a
                     href={website.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-purple-600 hover:text-purple-700 text-sm inline-flex items-center mt-1"
+                    className="flex-shrink-0 flex items-center gap-1 text-sm text-slate-400 hover:text-white transition-all duration-200 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0"
                   >
-                    访问网站
-                    <svg
-                      className="w-4 h-4 ml-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
+                    访问
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </a>
                 </div>
-              </div>
-            ))}
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Rank 4-10 */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+          <h2 className="text-xl font-bold text-slate-300 mb-4 flex items-center gap-2">
+            <span className={`inline-block w-6 h-6 rounded-full bg-gradient-to-br ${industry.gradient} text-white text-xs flex items-center justify-center font-bold`}>{podiumConfig.length + 1}</span>
+            第{podiumConfig.length + 1}–{industry.websites.length}名
+          </h2>
+          <div className="space-y-2">
+            {industry.websites.slice(3).map((website, index) => {
+              const rank = index + 4;
+              return (
+                <div
+                  key={index}
+                  className="flex items-center gap-4 p-4 rounded-xl bg-white/3 hover:bg-white/8 border border-transparent hover:border-white/10 transition-all duration-200 hover:translate-x-1 group"
+                >
+                  <span className={`inline-flex items-center justify-center w-8 h-8 bg-gradient-to-br ${industry.gradient} text-white rounded-full text-sm font-bold flex-shrink-0`}>
+                    {rank}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-sm font-semibold text-slate-200">
+                      <a href={website.url} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                        {website.name}
+                      </a>
+                    </h3>
+                    {website.description && (
+                      <p className="text-slate-500 text-xs truncate">{website.description}</p>
+                    )}
+                  </div>
+                  <a
+                    href={website.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-shrink-0 flex items-center gap-1 text-xs text-slate-500 hover:text-slate-200 transition-all duration-200 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0"
+                  >
+                    访问
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </a>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

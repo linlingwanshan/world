@@ -9,6 +9,8 @@ export interface Industry {
   name: string;
   description: string;
   websites: Website[];
+  icon: string;
+  gradient: string;
 }
 
 export const industries: Industry[] = [
@@ -16,6 +18,8 @@ export const industries: Industry[] = [
     id: 'technology',
     name: 'Technology',
     description: 'Leading technology companies and platforms shaping the digital world',
+    icon: '💻',
+    gradient: 'from-blue-500 to-cyan-500',
     websites: [
       { name: 'Microsoft', url: 'https://www.microsoft.com', description: 'Cloud computing and software solutions' },
       { name: 'Apple', url: 'https://www.apple.com', description: 'Consumer electronics and software' },
@@ -33,6 +37,8 @@ export const industries: Industry[] = [
     id: 'healthcare',
     name: 'Healthcare',
     description: 'Top healthcare organizations and medical service providers',
+    icon: '🏥',
+    gradient: 'from-green-500 to-emerald-500',
     websites: [
       { name: 'Mayo Clinic', url: 'https://www.mayoclinic.org', description: 'Medical care and research' },
       { name: 'Cleveland Clinic', url: 'https://www.clevelandclinic.org', description: 'Medical center and healthcare' },
@@ -50,6 +56,8 @@ export const industries: Industry[] = [
     id: 'finance',
     name: 'Finance',
     description: 'Leading financial institutions and fintech companies',
+    icon: '💰',
+    gradient: 'from-yellow-500 to-amber-500',
     websites: [
       { name: 'JPMorgan Chase', url: 'https://www.jpmorganchase.com', description: 'Banking and financial services' },
       { name: 'Bank of America', url: 'https://www.bankofamerica.com', description: 'Consumer and commercial banking' },
@@ -67,6 +75,8 @@ export const industries: Industry[] = [
     id: 'ecommerce',
     name: 'E-commerce',
     description: 'Top online shopping and marketplace platforms',
+    icon: '🛒',
+    gradient: 'from-orange-500 to-red-500',
     websites: [
       { name: 'Amazon', url: 'https://www.amazon.com', description: 'Online marketplace and retail' },
       { name: 'Alibaba', url: 'https://www.alibaba.com', description: 'B2B e-commerce platform' },
@@ -84,6 +94,8 @@ export const industries: Industry[] = [
     id: 'social-media',
     name: 'Social Media',
     description: 'Leading social networking and content platforms',
+    icon: '📱',
+    gradient: 'from-pink-500 to-purple-500',
     websites: [
       { name: 'Facebook', url: 'https://www.facebook.com', description: 'Social networking platform' },
       { name: 'YouTube', url: 'https://www.youtube.com', description: 'Video sharing platform' },
@@ -101,6 +113,8 @@ export const industries: Industry[] = [
     id: 'streaming',
     name: 'Streaming Services',
     description: 'Top video and audio streaming platforms',
+    icon: '🎬',
+    gradient: 'from-red-500 to-rose-500',
     websites: [
       { name: 'Netflix', url: 'https://www.netflix.com', description: 'Video streaming service' },
       { name: 'Disney+', url: 'https://www.disneyplus.com', description: 'Streaming entertainment' },

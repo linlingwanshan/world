@@ -77,6 +77,16 @@ export default function Navigation() {
             >
               所有行业
             </Link>
+            <Link
+              href="/about"
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                isActive('/about')
+                  ? 'bg-purple-100 text-purple-700'
+                  : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600'
+              }`}
+            >
+              关于
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -149,6 +159,17 @@ export default function Navigation() {
             }`}
           >
             所有行业
+          </Link>
+          <Link
+            href="/about"
+            onClick={() => setIsMenuOpen(false)}
+            className={`block px-3 py-2 rounded-md text-base font-medium ${
+              isActive('/about')
+                ? 'bg-purple-100 text-purple-700'
+                : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600'
+            }`}
+          >
+            关于
           </Link>
         </div>
       </div>

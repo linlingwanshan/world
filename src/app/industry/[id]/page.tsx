@@ -63,6 +63,62 @@ export default async function IndustryPage({ params }: PageProps) {
           </div>
         </div>
 
+        {/* Industry Deep Insight */}
+        {(industry.longDescription || industry.marketSize || industry.growthRate) && (
+          <div className="mb-8 bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+            {industry.longDescription && (
+              <p className="text-slate-300 text-sm leading-relaxed mb-4">{industry.longDescription}</p>
+            )}
+            <div className="flex flex-wrap gap-4">
+              {industry.marketSize && (
+                <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2">
+                  <span className="text-lg">💹</span>
+                  <div>
+                    <div className="text-xs text-slate-500">全球市场规模</div>
+                    <div className="text-sm font-semibold text-white">{industry.marketSize}</div>
+                  </div>
+                </div>
+              )}
+              {industry.growthRate && (
+                <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2">
+                  <span className="text-lg">📈</span>
+                  <div>
+                    <div className="text-xs text-slate-500">年增长率</div>
+                    <div className="text-sm font-semibold text-white">{industry.growthRate}</div>
+                  </div>
+                </div>
+              )}
+            </div>
+            {industry.trendKeywords && industry.trendKeywords.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-2">
+                {industry.trendKeywords.map((kw) => (
+                  <span key={kw} className={`inline-block bg-gradient-to-r ${industry.gradient} bg-clip-text text-transparent text-xs font-medium border border-white/10 px-3 py-1 rounded-full`}>
+                    #{kw}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Sub-category Filter Chips */}
+        {(() => {
+          const categories = Array.from(new Set(industry.websites.map((w) => w.category).filter(Boolean)));
+          if (categories.length === 0) return null;
+          return (
+            <div className="mb-6">
+              <h3 className="text-sm font-semibold text-slate-400 mb-2">🏷️ 子分类</h3>
+              <div className="flex flex-wrap gap-2">
+                {categories.map((cat) => (
+                  <span key={cat} className="inline-block bg-white/5 border border-white/10 text-slate-300 text-xs px-3 py-1.5 rounded-full">
+                    {cat}
+                  </span>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
+
         {/* Top 3 Podium */}
         <div className="mb-6">
           <h2 className="text-xl font-bold text-slate-300 mb-4 flex items-center gap-2">
@@ -88,6 +144,11 @@ export default async function IndustryPage({ params }: PageProps) {
                     {website.description && (
                       <p className="text-slate-400 text-sm truncate">{website.description}</p>
                     )}
+                    <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-1">
+                      {website.founded && <span className="text-slate-500 text-xs">🗓️ {website.founded}</span>}
+                      {website.headquarters && <span className="text-slate-500 text-xs">📍 {website.headquarters}</span>}
+                      {website.category && <span className="text-slate-500 text-xs">🏷️ {website.category}</span>}
+                    </div>
                   </div>
                   <a
                     href={website.url}
@@ -132,6 +193,10 @@ export default async function IndustryPage({ params }: PageProps) {
                     {website.description && (
                       <p className="text-slate-500 text-xs truncate">{website.description}</p>
                     )}
+                    <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-0.5">
+                      {website.founded && <span className="text-slate-600 text-[11px]">🗓️ {website.founded}</span>}
+                      {website.headquarters && <span className="text-slate-600 text-[11px]">📍 {website.headquarters}</span>}
+                    </div>
                   </div>
                   <a
                     href={website.url}

@@ -68,9 +68,9 @@ export default async function IndustryPage({ params }: PageProps) {
               <div className="flex flex-wrap gap-4 mb-4">
                 {industry.marketSize && (
                   <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2">
-                    <span className="text-lg">💹</span>
+                    <span className="text-lg">📊</span>
                     <div>
-                      <div className="text-xs text-gray-500">全球市场规模</div>
+                      <div className="text-xs text-gray-500">市场规模</div>
                       <div className="text-sm font-semibold text-white">{industry.marketSize}</div>
                     </div>
                   </div>
@@ -84,11 +84,18 @@ export default async function IndustryPage({ params }: PageProps) {
                     </div>
                   </div>
                 )}
+                <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2">
+                  <span className="text-lg">🏢</span>
+                  <div>
+                    <div className="text-xs text-gray-500">企业数量</div>
+                    <div className="text-sm font-semibold text-white">{industry.websites.length} 家</div>
+                  </div>
+                </div>
               </div>
               {industry.trendKeywords && industry.trendKeywords.length > 0 && (
                 <div className="flex flex-wrap gap-2">
                   {industry.trendKeywords.map((kw) => (
-                    <Badge key={kw} variant="secondary" className="text-xs">#{kw}</Badge>
+                    <Badge key={kw} variant="outline" className="text-xs">#{kw}</Badge>
                   ))}
                 </div>
               )}

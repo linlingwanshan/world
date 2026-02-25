@@ -30,7 +30,10 @@ export default function IndustryCard({ industry, rank }: IndustryCardProps) {
         <div className={`h-px bg-gradient-to-r ${industry.gradient} mt-3 rounded-full opacity-60`} />
       </CardHeader>
       <CardContent className="flex-1">
-        <p className="text-gray-400 mb-4 text-sm leading-relaxed">{industry.description}</p>
+        <p className="text-gray-400 mb-3 text-sm leading-relaxed">{industry.description}</p>
+        {industry.marketSize && (
+          <p className="text-xs text-gray-500 mb-3">📊 {industry.marketSize} · 🏢 {industry.websites.length} 家企业</p>
+        )}
         <ul className="space-y-2">
           {industry.websites.slice(0, 5).map((website, index) => (
             <li key={index} className="flex items-center gap-2">

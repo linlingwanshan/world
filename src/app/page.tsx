@@ -2,12 +2,19 @@ import IndustryCard from "@/components/IndustryCard";
 import { industries } from "@/data/industries";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const totalWebsites = industries.reduce((sum, ind) => sum + ind.websites.length, 0);
 
 const trendKeywords = Array.from(
-  new Set(industries.flatMap((ind) => ind.trendKeywords ?? []))
+  new Set(industries.flatMap((ind) => (ind.trendKeywords ?? []).slice(0, 2)))
 );
+
+const featuredWebsites = industries.slice(0, 6).map((ind, i) => ({
+  website: ind.websites[i % ind.websites.length],
+  industryName: ind.name,
+}));
 
 const featuredCompanies = [
   { name: 'OpenAI', industry: 'Artificial Intelligence', icon: '🤖', highlight: 'ChatGPT 引领 AI 应用浪潮' },
@@ -60,9 +67,9 @@ export default function Home() {
         {/* Trend Keywords Banner */}
         <section className="py-12">
           <h3 className="text-sm font-semibold text-gray-500 mb-4 flex items-center gap-2 uppercase tracking-wider">🔥 行业趋势热词</h3>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 bg-white/5 rounded-2xl p-6">
             {trendKeywords.slice(0, 20).map((kw) => (
-              <Badge key={kw} variant="secondary" className="text-xs">
+              <Badge key={kw} variant="outline" className="text-xs">
                 {kw}
               </Badge>
             ))}
@@ -112,6 +119,37 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {industries.slice(3).map((industry) => (
               <IndustryCard key={industry.id} industry={industry} />
+            ))}
+          </div>
+        </section>
+
+        <Separator />
+
+        {/* Featured Recommendations */}
+        <section className="py-20 md:py-32">
+          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-12 text-center">
+            🌟 精选推荐
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredWebsites.map(({ website, industryName }) => (
+              <Card key={website.url} className="hover:bg-[#2d2d2f] hover:border-white/20 transition-all duration-300 flex flex-col">
+                <CardContent className="pt-6 flex-1 flex flex-col gap-3">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-white font-semibold text-lg">{website.name}</h3>
+                    <Badge variant="outline" className="text-xs shrink-0">
+                      {industryName}
+                    </Badge>
+                  </div>
+                  {website.description && (
+                    <p className="text-gray-400 text-sm leading-relaxed flex-1">{website.description}</p>
+                  )}
+                  <Button asChild variant="outline" size="sm" className="mt-auto w-full">
+                    <a href={website.url} target="_blank" rel="noopener noreferrer">
+                      访问网站 →
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </section>

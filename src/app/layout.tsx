@@ -43,6 +43,7 @@ export default function RootLayout({
                 <ul className="space-y-2 text-sm text-gray-600">
                   <li><Link href="/" className="hover:text-purple-600 transition-colors">🏠 首页</Link></li>
                   <li><Link href="/all-industries" className="hover:text-purple-600 transition-colors">📋 所有行业</Link></li>
+                  <li><Link href="/about" className="hover:text-purple-600 transition-colors">ℹ️ 关于我们</Link></li>
                   <li><Link href="/industry/technology" className="hover:text-purple-600 transition-colors">💻 科技行业</Link></li>
                   <li><Link href="/industry/finance" className="hover:text-purple-600 transition-colors">💰 金融行业</Link></li>
                   <li><Link href="/industry/healthcare" className="hover:text-purple-600 transition-colors">🏥 医疗行业</Link></li>

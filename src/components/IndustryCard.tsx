@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import { Industry } from '@/data/industries';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 
 interface IndustryCardProps {
   industry: Industry;
@@ -7,51 +10,52 @@ interface IndustryCardProps {
 }
 
 function RankBadge({ rank }: { rank: number }) {
-  if (rank === 1) return <span className="text-xs font-semibold px-2 py-1 rounded-full border bg-yellow-100 text-yellow-800 border-yellow-300">🥇 精选</span>;
-  if (rank === 2) return <span className="text-xs font-semibold px-2 py-1 rounded-full border bg-gray-100 text-gray-700 border-gray-300">🥈 精选</span>;
-  if (rank === 3) return <span className="text-xs font-semibold px-2 py-1 rounded-full border bg-orange-100 text-orange-800 border-orange-300">🥉 精选</span>;
+  if (rank === 1) return <Badge variant="gold">🥇 精选</Badge>;
+  if (rank === 2) return <Badge variant="silver">🥈 精选</Badge>;
+  if (rank === 3) return <Badge variant="bronze">🥉 精选</Badge>;
   return null;
 }
 
 export default function IndustryCard({ industry, rank }: IndustryCardProps) {
   return (
-    <div className={`p-[2px] rounded-xl bg-gradient-to-br ${industry.gradient} hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] group`}>
-      <div className="bg-white rounded-[10px] p-6 h-full flex flex-col">
-        <div className="flex items-start justify-between mb-3">
-          <div className="flex items-center gap-2">
+    <Card className="hover:bg-[#2d2d2f] hover:border-white/20 transition-all duration-300 hover:scale-[1.02] group flex flex-col">
+      <CardHeader className="pb-3">
+        <div className="flex items-start justify-between">
+          <div className="flex items-center gap-3">
             <span className="text-3xl">{industry.icon}</span>
-            <h2 className="text-xl font-bold text-gray-800">
-              {industry.name}
-            </h2>
+            <h2 className="text-xl font-semibold text-white">{industry.name}</h2>
           </div>
           {rank && <RankBadge rank={rank} />}
         </div>
-        <div className={`h-0.5 bg-gradient-to-r ${industry.gradient} mb-3 rounded-full`}></div>
-        <p className="text-gray-600 mb-4 text-sm">{industry.description}</p>
-        <ul className="space-y-2 mb-4 flex-1">
+        <div className={`h-px bg-gradient-to-r ${industry.gradient} mt-3 rounded-full opacity-60`} />
+      </CardHeader>
+      <CardContent className="flex-1">
+        <p className="text-gray-400 mb-4 text-sm leading-relaxed">{industry.description}</p>
+        <ul className="space-y-2">
           {industry.websites.slice(0, 5).map((website, index) => (
-            <li key={index} className="flex items-center">
-              <span className={`inline-flex items-center justify-center w-6 h-6 bg-gradient-to-br ${industry.gradient} text-white rounded-full text-xs font-bold mr-2 flex-shrink-0`}>
+            <li key={index} className="flex items-center gap-2">
+              <span className={`inline-flex items-center justify-center w-5 h-5 bg-gradient-to-br ${industry.gradient} text-white rounded-full text-xs font-bold flex-shrink-0`}>
                 {index + 1}
               </span>
               <a
                 href={website.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-700 hover:text-purple-600 transition-colors font-medium text-sm"
+                className="text-gray-300 hover:text-white transition-colors text-sm"
               >
                 {website.name}
               </a>
             </li>
           ))}
         </ul>
-        <Link
-          href={`/industry/${industry.id}`}
-          className={`inline-block bg-gradient-to-r ${industry.gradient} text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity text-sm font-medium`}
-        >
-          查看全部 ({industry.websites.length})
-        </Link>
-      </div>
-    </div>
+      </CardContent>
+      <CardFooter>
+        <Button asChild variant="outline" className="w-full group-hover:border-white/20">
+          <Link href={`/industry/${industry.id}`}>
+            查看全部 ({industry.websites.length})
+          </Link>
+        </Button>
+      </CardFooter>
+    </Card>
   );
 }

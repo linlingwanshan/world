@@ -1,5 +1,7 @@
 import IndustryCard from "@/components/IndustryCard";
 import { industries } from "@/data/industries";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 
 const totalWebsites = industries.reduce((sum, ind) => sum + ind.websites.length, 0);
 
@@ -23,88 +25,74 @@ const latestUpdates = [
 
 export default function Home() {
   return (
-    <div className="py-8 px-4 sm:px-6 lg:px-8">
+    <div className="px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Hero Section */}
-        <div className="text-center mb-12 relative overflow-hidden bg-gradient-to-br from-white to-purple-50 rounded-2xl shadow-xl p-10">
-          {/* Decorative dot grid */}
-          <div className="absolute inset-0 opacity-[0.04] dot-grid" />
-          {/* Decorative blobs */}
-          <div className="absolute top-0 right-0 w-48 h-48 bg-purple-300 rounded-full -translate-y-1/2 translate-x-1/2 opacity-20 blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-300 rounded-full translate-y-1/2 -translate-x-1/2 opacity-20 blur-3xl pointer-events-none" />
-
-          <div className="relative z-10">
-            <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 text-sm font-medium px-4 py-1.5 rounded-full mb-5">
-              🌍 全球行业排名门户
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-br from-purple-600 via-purple-500 to-blue-600 bg-clip-text text-transparent">
-              世界各行业排名前10门户
-            </h1>
-            <p className="text-xl text-gray-700 mb-2 font-medium">
-              Global Industry Top 10 Portal
-            </p>
-            <p className="text-gray-600 max-w-3xl mx-auto mb-8">
-              探索世界各行业的前10名排名。我们的门户网站提供了不同行业领先公司和平台的便捷访问。
-            </p>
-            {/* Stats badges */}
-            <div className="flex flex-wrap justify-center gap-4">
-              <div className="flex items-center gap-3 bg-white rounded-xl shadow-sm px-5 py-3 border border-purple-100">
-                <span className="text-2xl">🏭</span>
-                <div className="text-left">
-                  <div className="text-lg font-bold text-purple-600">{industries.length}</div>
-                  <div className="text-xs text-gray-500">行业分类</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 bg-white rounded-xl shadow-sm px-5 py-3 border border-purple-100">
-                <span className="text-2xl">🌐</span>
-                <div className="text-left">
-                  <div className="text-lg font-bold text-purple-600">{totalWebsites}+</div>
-                  <div className="text-xs text-gray-500">精选网站</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 bg-white rounded-xl shadow-sm px-5 py-3 border border-purple-100">
-                <span className="text-2xl">📊</span>
-                <div className="text-left">
-                  <div className="text-lg font-bold text-purple-600">Top 10</div>
-                  <div className="text-xs text-gray-500">每行业排名</div>
-                </div>
-              </div>
-            </div>
+        <section className="py-20 md:py-32 text-center">
+          <Badge variant="secondary" className="mb-8 text-sm px-4 py-1.5">
+            🌍 全球行业排名门户
+          </Badge>
+          <h1 className="text-5xl md:text-7xl font-semibold mb-6 leading-tight tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+            世界各行业<br />排名前10门户
+          </h1>
+          <p className="text-gray-400 text-xl mb-4 font-medium">
+            Global Industry Top 10 Portal
+          </p>
+          <p className="text-gray-500 max-w-2xl mx-auto mb-12 text-lg leading-relaxed">
+            探索世界各行业的前10名排名。我们的门户网站提供了不同行业领先公司和平台的便捷访问。
+          </p>
+          {/* Stats */}
+          <div className="flex flex-wrap justify-center gap-3">
+            <Badge variant="outline" className="text-sm px-4 py-1.5">
+              🏭 {industries.length} 大行业
+            </Badge>
+            <Badge variant="outline" className="text-sm px-4 py-1.5">
+              �� {totalWebsites}+ 顶级网站
+            </Badge>
+            <Badge variant="outline" className="text-sm px-4 py-1.5">
+              📊 全球覆盖
+            </Badge>
           </div>
-        </div>
+        </section>
+
+        <Separator />
 
         {/* Trend Keywords Banner */}
-        <div className="mb-10 overflow-hidden rounded-xl bg-gradient-to-r from-indigo-900 via-purple-900 to-slate-900 border border-white/10 p-5">
-          <h3 className="text-sm font-semibold text-slate-400 mb-3 flex items-center gap-2">🔥 行业趋势热词</h3>
+        <section className="py-12">
+          <h3 className="text-sm font-semibold text-gray-500 mb-4 flex items-center gap-2 uppercase tracking-wider">🔥 行业趋势热词</h3>
           <div className="flex flex-wrap gap-2">
             {trendKeywords.slice(0, 20).map((kw) => (
-              <span key={kw} className="inline-block bg-white/10 text-slate-200 text-xs font-medium px-3 py-1.5 rounded-full border border-white/10 hover:bg-white/20 transition-colors">
+              <Badge key={kw} variant="secondary" className="text-xs">
                 {kw}
-              </span>
+              </Badge>
             ))}
           </div>
-        </div>
+        </section>
+
+        <Separator />
 
         {/* Featured Star Companies */}
-        <div className="mb-10">
-          <h2 className="text-2xl font-bold text-white mb-5 text-center flex items-center justify-center gap-2">
-            ⭐ 季度明星企业推荐
+        <section className="py-20">
+          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-12 text-center">
+            ⭐ 季度明星企业
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {featuredCompanies.map((company) => (
-              <div key={company.name} className="bg-white/5 border border-white/10 rounded-xl p-5 hover:bg-white/10 transition-colors">
-                <div className="text-3xl mb-2">{company.icon}</div>
-                <h3 className="text-white font-bold text-lg">{company.name}</h3>
-                <p className="text-slate-400 text-xs mb-2">{company.industry}</p>
-                <p className="text-slate-300 text-sm">{company.highlight}</p>
+              <div key={company.name} className="bg-[#1d1d1f] border border-white/10 rounded-xl p-6 hover:bg-[#2d2d2f] hover:border-white/20 transition-all duration-300">
+                <div className="text-3xl mb-3">{company.icon}</div>
+                <h3 className="text-white font-semibold text-lg mb-1">{company.name}</h3>
+                <p className="text-gray-500 text-xs mb-2">{company.industry}</p>
+                <p className="text-gray-400 text-sm leading-relaxed">{company.highlight}</p>
               </div>
             ))}
           </div>
-        </div>
+        </section>
+
+        <Separator />
 
         {/* Featured Industries */}
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-white mb-6 text-center">
+        <section className="py-20">
+          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-12 text-center">
             精选行业
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -112,11 +100,13 @@ export default function Home() {
               <IndustryCard key={industry.id} industry={industry} rank={index + 1} />
             ))}
           </div>
-        </div>
+        </section>
+
+        <Separator />
 
         {/* Other Industries */}
-        <div className="mb-10">
-          <h2 className="text-3xl font-bold text-white mb-6 text-center">
+        <section className="py-20">
+          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-12 text-center">
             其他行业
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -124,20 +114,22 @@ export default function Home() {
               <IndustryCard key={industry.id} industry={industry} />
             ))}
           </div>
-        </div>
+        </section>
+
+        <Separator />
 
         {/* Latest Updates */}
-        <div className="rounded-xl bg-white/5 border border-white/10 p-6 backdrop-blur-sm">
-          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">📰 最新动态</h2>
-          <ul className="space-y-3">
+        <section className="py-16">
+          <h2 className="text-2xl font-semibold text-white mb-8 flex items-center gap-2">📰 最新动态</h2>
+          <ul className="space-y-4">
             {latestUpdates.map((update, idx) => (
-              <li key={idx} className="flex items-start gap-3 text-sm">
-                <span className="inline-block bg-purple-500/20 text-purple-300 text-xs font-mono px-2 py-0.5 rounded shrink-0">{update.date}</span>
-                <span className="text-slate-300">{update.text}</span>
+              <li key={idx} className="flex items-start gap-4 text-sm">
+                <span className="inline-block bg-white/5 border border-white/10 text-gray-500 text-xs font-mono px-2.5 py-1 rounded-lg shrink-0">{update.date}</span>
+                <span className="text-gray-400 pt-0.5">{update.text}</span>
               </li>
             ))}
           </ul>
-        </div>
+        </section>
       </div>
     </div>
   );

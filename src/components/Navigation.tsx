@@ -3,11 +3,14 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import { Menu } from 'lucide-react';
 import { industries } from '@/data/industries';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 
 export default function Navigation() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -16,161 +19,87 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const isActive = (path: string) => pathname === path;
 
-  const isActive = (path: string) => {
-    return pathname === path;
-  };
+  const navLinks = [
+    { href: '/', label: '首页' },
+    ...industries.slice(0, 3).map((ind) => ({
+      href: `/industry/${ind.id}`,
+      label: `${ind.icon} ${ind.name}`,
+    })),
+    { href: '/all-industries', label: '所有行业' },
+    { href: '/about', label: '关于' },
+  ];
 
   return (
     <nav className={`sticky top-0 z-50 transition-all duration-300 ${
-      scrolled
-        ? 'bg-white/90 backdrop-blur-md shadow-lg'
-        : 'bg-white/70 backdrop-blur-sm shadow-md'
-    }`}>
+      scrolled ? 'bg-black/90 backdrop-blur-xl shadow-lg shadow-black/20' : 'bg-black/80 backdrop-blur-xl'
+    } border-b border-white/[0.08]`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
+          {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0 flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <span className="text-2xl">🌍</span>
-              <h1 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+              <span className="text-lg font-semibold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
                 行业门户
-              </h1>
+              </span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-4">
-            <Link
-              href="/"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                isActive('/')
-                  ? 'bg-purple-100 text-purple-700'
-                  : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600'
-              }`}
-            >
-              首页
-            </Link>
-            {industries.slice(0, 3).map((industry) => (
+          <div className="hidden md:flex md:items-center md:gap-1">
+            {navLinks.map((link) => (
               <Link
-                key={industry.id}
-                href={`/industry/${industry.id}`}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${
-                  isActive(`/industry/${industry.id}`)
-                    ? 'bg-purple-100 text-purple-700'
-                    : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600'
+                key={link.href}
+                href={link.href}
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  isActive(link.href)
+                    ? 'bg-white/10 text-white'
+                    : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}
               >
-                <span>{industry.icon}</span>
-                {industry.name}
+                {link.label}
               </Link>
             ))}
-            <Link
-              href="/all-industries"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                isActive('/all-industries')
-                  ? 'bg-purple-100 text-purple-700'
-                  : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600'
-              }`}
-            >
-              所有行业
-            </Link>
-            <Link
-              href="/about"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                isActive('/about')
-                  ? 'bg-purple-100 text-purple-700'
-                  : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600'
-              }`}
-            >
-              关于
-            </Link>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile Menu */}
           <div className="flex items-center md:hidden">
-            <button
-              onClick={toggleMenu}
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-purple-600 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 transition-colors"
-              aria-expanded={isMenuOpen}
-            >
-              <span className="sr-only">打开主菜单</span>
-              <svg
-                className={`h-6 w-6 transition-transform duration-300 ${isMenuOpen ? 'rotate-90' : ''}`}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                {!isMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                )}
-              </svg>
-            </button>
+            <Sheet open={open} onOpenChange={setOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" aria-label="打开菜单">
+                  <Menu className="h-5 w-5 text-gray-400" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right">
+                <SheetHeader>
+                  <SheetTitle>
+                    <span className="flex items-center gap-2">
+                      <span className="text-xl">🌍</span>
+                      <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">行业门户</span>
+                    </span>
+                  </SheetTitle>
+                </SheetHeader>
+                <div className="mt-6 flex flex-col gap-1">
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className={`px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+                        isActive(link.href)
+                          ? 'bg-white/10 text-white'
+                          : 'text-gray-400 hover:text-white hover:bg-white/5'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
-        </div>
-      </div>
-
-      {/* Mobile menu with slide animation */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
-        aria-hidden={!isMenuOpen}
-      >
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/95 backdrop-blur-sm border-t border-gray-100">
-          <Link
-            href="/"
-            onClick={() => setIsMenuOpen(false)}
-            className={`block px-3 py-2 rounded-md text-base font-medium ${
-              isActive('/')
-                ? 'bg-purple-100 text-purple-700'
-                : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600'
-            }`}
-          >
-            首页
-          </Link>
-          {industries.slice(0, 3).map((industry) => (
-            <Link
-              key={industry.id}
-              href={`/industry/${industry.id}`}
-              onClick={() => setIsMenuOpen(false)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-md text-base font-medium ${
-                isActive(`/industry/${industry.id}`)
-                  ? 'bg-purple-100 text-purple-700'
-                  : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600'
-              }`}
-            >
-              <span>{industry.icon}</span>
-              {industry.name}
-            </Link>
-          ))}
-          <Link
-            href="/all-industries"
-            onClick={() => setIsMenuOpen(false)}
-            className={`block px-3 py-2 rounded-md text-base font-medium ${
-              isActive('/all-industries')
-                ? 'bg-purple-100 text-purple-700'
-                : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600'
-            }`}
-          >
-            所有行业
-          </Link>
-          <Link
-            href="/about"
-            onClick={() => setIsMenuOpen(false)}
-            className={`block px-3 py-2 rounded-md text-base font-medium ${
-              isActive('/about')
-                ? 'bg-purple-100 text-purple-700'
-                : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600'
-            }`}
-          >
-            关于
-          </Link>
         </div>
       </div>
     </nav>

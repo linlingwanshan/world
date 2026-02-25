@@ -344,6 +344,98 @@ export const industries: Industry[] = [
     ]
   },
   {
+    id: 'cybersecurity',
+    name: 'Cybersecurity',
+    description: 'Leading cybersecurity companies protecting digital infrastructure worldwide',
+    icon: '🔒',
+    gradient: 'from-red-600 to-orange-500',
+    longDescription: 'The cybersecurity industry defends organizations against an ever-growing wave of cyber threats, ransomware, and state-sponsored attacks. Zero Trust architecture, extended detection and response (XDR), and AI-driven threat intelligence are redefining how enterprises secure their networks, endpoints, and identities.',
+    marketSize: '$200 billion (2024)',
+    growthRate: '12.4% CAGR',
+    trendKeywords: ['Zero Trust', 'XDR', 'SASE', 'Threat Intelligence', 'Identity Security'],
+    websites: [
+      { name: 'CrowdStrike', url: 'https://www.crowdstrike.com', description: 'Cloud-native endpoint security platform', founded: '2011', headquarters: 'Austin, TX, USA', category: 'Endpoint Security' },
+      { name: 'Palo Alto Networks', url: 'https://www.paloaltonetworks.com', description: 'Next-generation firewall and SASE solutions', founded: '2005', headquarters: 'Santa Clara, CA, USA', category: 'Network Security' },
+      { name: 'Fortinet', url: 'https://www.fortinet.com', description: 'Integrated network security and SD-WAN', founded: '2000', headquarters: 'Sunnyvale, CA, USA', category: 'Network Security' },
+      { name: 'Cloudflare', url: 'https://www.cloudflare.com', description: 'Web performance and security platform', founded: '2009', headquarters: 'San Francisco, CA, USA', category: 'Web Security' },
+      { name: 'Zscaler', url: 'https://www.zscaler.com', description: 'Zero Trust cloud security platform', founded: '2007', headquarters: 'San Jose, CA, USA', category: 'Cloud Security' },
+      { name: 'SentinelOne', url: 'https://www.sentinelone.com', description: 'AI-powered endpoint and cloud security', founded: '2013', headquarters: 'Mountain View, CA, USA', category: 'Endpoint Security' },
+      { name: 'Okta', url: 'https://www.okta.com', description: 'Identity and access management platform', founded: '2009', headquarters: 'San Francisco, CA, USA', category: 'Identity Security' },
+      { name: 'Check Point', url: 'https://www.checkpoint.com', description: 'Cyber security solutions for networks and cloud', founded: '1993', headquarters: 'Tel Aviv, Israel', category: 'Network Security' },
+      { name: 'Splunk', url: 'https://www.splunk.com', description: 'Security information and event management', founded: '2003', headquarters: 'San Francisco, CA, USA', category: 'SIEM' },
+      { name: 'NortonLifeLock', url: 'https://www.nortonlifelock.com', description: 'Consumer cybersecurity and identity protection', founded: '1982', headquarters: 'Tempe, AZ, USA', category: 'Consumer Security' }
+    ]
+  },
+  {
+    id: 'blockchain-web3',
+    name: 'Blockchain & Web3',
+    description: 'Decentralized finance, blockchain protocols, and Web3 platforms',
+    icon: '⛓️',
+    gradient: 'from-purple-600 to-blue-500',
+    longDescription: 'The blockchain and Web3 ecosystem is redefining ownership, finance, and digital identity through decentralized protocols. DeFi platforms, NFT marketplaces, and Layer-2 scaling solutions are driving mainstream adoption while DAOs and tokenization unlock new governance and economic models.',
+    marketSize: '$70 billion (2024)',
+    growthRate: '56.3% CAGR',
+    trendKeywords: ['DeFi', 'NFT', 'Layer 2', 'DAOs', 'Tokenization'],
+    websites: [
+      { name: 'Ethereum', url: 'https://ethereum.org', description: 'Decentralized smart contract blockchain platform', founded: '2015', headquarters: 'Zug, Switzerland', category: 'Blockchain Protocol' },
+      { name: 'Coinbase', url: 'https://www.coinbase.com', description: 'Cryptocurrency exchange and wallet platform', founded: '2012', headquarters: 'San Francisco, CA, USA', category: 'Crypto Exchange' },
+      { name: 'Binance', url: 'https://www.binance.com', description: 'World\'s largest cryptocurrency exchange', founded: '2017', headquarters: 'Cayman Islands', category: 'Crypto Exchange' },
+      { name: 'Solana', url: 'https://solana.com', description: 'High-performance blockchain for DApps', founded: '2020', headquarters: 'San Francisco, CA, USA', category: 'Blockchain Protocol' },
+      { name: 'Polygon', url: 'https://polygon.technology', description: 'Ethereum Layer-2 scaling solutions', founded: '2017', headquarters: 'Dubai, UAE', category: 'Layer 2' },
+      { name: 'Chainlink', url: 'https://chain.link', description: 'Decentralized oracle network for smart contracts', founded: '2017', headquarters: 'Grand Cayman, Cayman Islands', category: 'Oracle Network' },
+      { name: 'Uniswap', url: 'https://uniswap.org', description: 'Decentralized token exchange protocol', founded: '2018', headquarters: 'New York, NY, USA', category: 'DeFi' },
+      { name: 'OpenSea', url: 'https://opensea.io', description: 'Largest NFT marketplace', founded: '2017', headquarters: 'New York, NY, USA', category: 'NFT Marketplace' },
+      { name: 'Aave', url: 'https://aave.com', description: 'Decentralized lending and borrowing protocol', founded: '2017', headquarters: 'London, UK', category: 'DeFi' },
+      { name: 'ConsenSys', url: 'https://consensys.io', description: 'Ethereum software and infrastructure company', founded: '2014', headquarters: 'New York, NY, USA', category: 'Blockchain Infrastructure' }
+    ]
+  },
+  {
+    id: 'robotics-iot',
+    name: 'Robotics & IoT',
+    description: 'Industrial robotics, smart devices, and Internet of Things platforms',
+    icon: '🦾',
+    gradient: 'from-cyan-500 to-blue-600',
+    longDescription: 'The robotics and IoT industry is transforming manufacturing, logistics, and everyday life through intelligent automation and connected devices. Humanoid robots, collaborative arms, and edge AI are converging with billions of IoT sensors to create smart factories, cities, and homes.',
+    marketSize: '$150 billion (2024)',
+    growthRate: '25.4% CAGR',
+    trendKeywords: ['Industrial IoT', 'Humanoid Robots', 'Digital Twin', 'Edge AI', 'Smart Factory'],
+    websites: [
+      { name: 'Boston Dynamics', url: 'https://bostondynamics.com', description: 'Advanced mobile robot platforms', founded: '1992', headquarters: 'Waltham, MA, USA', category: 'Industrial Robotics' },
+      { name: 'iRobot', url: 'https://www.irobot.com', description: 'Consumer and defense robot systems', founded: '1990', headquarters: 'Bedford, MA, USA', category: 'Consumer Robotics' },
+      { name: 'ABB Robotics', url: 'https://new.abb.com/products/robotics', description: 'Industrial robots and automation solutions', founded: '1988', headquarters: 'Zürich, Switzerland', category: 'Industrial Robotics' },
+      { name: 'Fanuc', url: 'https://www.fanuc.eu', description: 'CNC systems and industrial robots', founded: '1972', headquarters: 'Oshino, Japan', category: 'Industrial Automation' },
+      { name: 'Arduino', url: 'https://www.arduino.cc', description: 'Open-source electronics prototyping platform', founded: '2005', headquarters: 'Monza, Italy', category: 'IoT Hardware' },
+      { name: 'Raspberry Pi', url: 'https://www.raspberrypi.com', description: 'Low-cost single-board computers for IoT', founded: '2012', headquarters: 'Cambridge, UK', category: 'IoT Hardware' },
+      { name: 'Siemens IoT', url: 'https://www.siemens.com/iot', description: 'Industrial IoT and digital factory solutions', founded: '1847', headquarters: 'Munich, Germany', category: 'Industrial IoT' },
+      { name: 'AWS IoT', url: 'https://aws.amazon.com/iot', description: 'Cloud IoT services and device management', founded: '2015', headquarters: 'Seattle, WA, USA', category: 'Cloud IoT' },
+      { name: 'Bosch IoT', url: 'https://www.bosch-iot-suite.com', description: 'IoT platform and connected solutions', founded: '1886', headquarters: 'Stuttgart, Germany', category: 'Industrial IoT' },
+      { name: 'Ubiquiti', url: 'https://www.ui.com', description: 'Networking and IoT infrastructure solutions', founded: '2003', headquarters: 'New York, NY, USA', category: 'Network IoT' }
+    ]
+  },
+  {
+    id: 'media-entertainment',
+    name: 'Media & Entertainment',
+    description: 'Digital publishing, news media, and entertainment content platforms',
+    icon: '🎭',
+    gradient: 'from-fuchsia-500 to-pink-600',
+    longDescription: 'The media and entertainment industry is undergoing a profound digital transformation with the rise of streaming, podcasts, and creator-driven platforms. AI-assisted journalism, paywall innovation, and immersive experiences are reshaping how audiences discover and consume content globally.',
+    marketSize: '$2.5 trillion (2024)',
+    growthRate: '6.8% CAGR',
+    trendKeywords: ['Digital Publishing', 'Podcast Boom', 'AI Journalism', 'Creator Tools', 'Paywall Innovation'],
+    websites: [
+      { name: 'The New York Times', url: 'https://www.nytimes.com', description: 'Global news and digital media publisher', founded: '1851', headquarters: 'New York, NY, USA', category: 'News Media' },
+      { name: 'Bloomberg', url: 'https://www.bloomberg.com', description: 'Financial news and data media company', founded: '1981', headquarters: 'New York, NY, USA', category: 'Financial Media' },
+      { name: 'Reuters', url: 'https://www.reuters.com', description: 'International news agency and content provider', founded: '1851', headquarters: 'London, UK', category: 'News Agency' },
+      { name: 'BBC', url: 'https://www.bbc.com', description: 'British public broadcaster and global news', founded: '1922', headquarters: 'London, UK', category: 'Public Broadcasting' },
+      { name: 'CNN', url: 'https://www.cnn.com', description: '24-hour cable news network', founded: '1980', headquarters: 'Atlanta, GA, USA', category: 'Cable News' },
+      { name: 'Variety', url: 'https://variety.com', description: 'Entertainment industry news and analysis', founded: '1905', headquarters: 'Los Angeles, CA, USA', category: 'Entertainment Media' },
+      { name: 'The Verge', url: 'https://www.theverge.com', description: 'Technology and culture news platform', founded: '2011', headquarters: 'New York, NY, USA', category: 'Tech Media' },
+      { name: 'TechCrunch', url: 'https://techcrunch.com', description: 'Startup and technology news', founded: '2005', headquarters: 'San Francisco, CA, USA', category: 'Tech Media' },
+      { name: 'Vice Media', url: 'https://www.vice.com', description: 'Youth-focused digital media network', founded: '1994', headquarters: 'New York, NY, USA', category: 'Digital Media' },
+      { name: 'Condé Nast', url: 'https://www.condenast.com', description: 'Premium magazine and digital content publisher', founded: '1909', headquarters: 'New York, NY, USA', category: 'Magazine Publishing' }
+    ]
+  },
+  {
     id: 'travel',
     name: 'Travel & Hospitality',
     description: 'Travel booking, airlines, and hospitality platforms',

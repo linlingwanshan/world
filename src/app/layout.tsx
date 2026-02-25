@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="antialiased bg-gradient-to-br from-purple-400 via-purple-500 to-purple-600 min-h-screen"
+        className="antialiased bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950 min-h-screen"
       >
         <Navigation />
         <main className="min-h-[calc(100vh-4rem)]">
